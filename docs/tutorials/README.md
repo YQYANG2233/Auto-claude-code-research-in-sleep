@@ -10,19 +10,22 @@ Long-form interview-prep cheat sheets, written in Markdown and rendered to singl
 |---|---|---|---|
 | **Attention 面试 Cheat Sheet** | [md](attention_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/attention_tutorial.html) | Scaled-dot-product, MHA / MQA / GQA, RoPE / ALiBi, FlashAttention, KV cache, attention in diffusion, NaN-mask trap |
 
-### 🏛️ LLM Architecture & Systems
-
-| Tutorial | MD | HTML | Topics |
-|---|---|---|---|
-| **Long Context (RoPE / YaRN / NTK / MLA / StreamingLLM)** | [md](long_context_rope_yarn_mla_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/long_context_rope_yarn_mla_tutorial.html) | RoPE rotation, PI/NTK/YaRN/LongRoPE scaling, MLA decoupled RoPE, SWA + StreamingLLM, Ring Attention |
-| **KV Cache + Speculative Decoding** | [md](kv_cache_speculative_decoding_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/kv_cache_speculative_decoding_tutorial.html) | PagedAttention, MQA/GQA/MLA, speculative decoding acceptance prob, Medusa / EAGLE-1/2/3, Lookahead |
-| **Distributed Training** | [md](distributed_training_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/distributed_training_tutorial.html) | DDP / FSDP2 / ZeRO 1/2/3 + ZeRO++ / TP (Megatron) / PP (GPipe, 1F1B, interleaved) / SP / CP / EP / DualPipe / Llama 3 |
-
 ### 🎯 Post-Training & Reasoning
 
 | Tutorial | MD | HTML | Topics |
 |---|---|---|---|
+| **RLHF / DPO / GRPO / PPO** | [md](rlhf_dpo_grpo_ppo_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/rlhf_dpo_grpo_ppo_tutorial.html) | PPO clip + GAE · RLHF pipeline · DPO closed-form from BT · GRPO group-relative · KTO/IPO/SimPO/ORPO · PRM vs ORM · Constitutional AI |
 | **Reasoning Models (o1 / R1 / Test-Time Compute / PRM)** | [md](reasoning_models_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/reasoning_models_tutorial.html) | o1/o3/R1 三家对比 · GRPO 推导 · PRM vs ORM · s1 budget forcing · MCTS+PUCT · R1-Distill |
+
+### 🏛️ LLM Architecture & Systems
+
+| Tutorial | MD | HTML | Topics |
+|---|---|---|---|
+| **MoE (Mixture-of-Experts)** | [md](moe_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/moe_tutorial.html) | DeepSeek-V3 fine-grained + shared · Mixtral · Llama 4 · auxiliary-loss-free balancing · EP all-to-all · DualPipe · capacity factor |
+| **Long Context (RoPE / YaRN / NTK / MLA / StreamingLLM)** | [md](long_context_rope_yarn_mla_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/long_context_rope_yarn_mla_tutorial.html) | RoPE rotation, PI/NTK/YaRN/LongRoPE scaling, MLA decoupled RoPE, SWA + StreamingLLM, Ring Attention |
+| **KV Cache + Speculative Decoding** | [md](kv_cache_speculative_decoding_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/kv_cache_speculative_decoding_tutorial.html) | PagedAttention, MQA/GQA/MLA, speculative decoding acceptance prob, Medusa / EAGLE-1/2/3, Lookahead |
+| **Quantization** | [md](quantization_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/quantization_tutorial.html) | GPTQ Hessian-based · AWQ activation-aware · SmoothQuant · LLM.int8 · QuaRot/SpinQuant · FP8 E4M3/E5M2 · MX formats · NVFP4 |
+| **Distributed Training** | [md](distributed_training_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/distributed_training_tutorial.html) | DDP / FSDP2 / ZeRO 1/2/3 + ZeRO++ / TP (Megatron) / PP (GPipe, 1F1B, interleaved) / SP / CP / EP / DualPipe / Llama 3 |
 
 ### 🌊 Generative Models — Theory & Tokenizers
 
@@ -30,6 +33,7 @@ Long-form interview-prep cheat sheets, written in Markdown and rendered to singl
 |---|---|---|---|
 | **Flow Matching Quick Reference** | [md](flow_matching_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/flow_matching_tutorial.html) | Conditional FM, Rectified Flow / VP / VE paths, training + sampling code, ODE solvers, SD3 / FLUX latent FM |
 | **Diffusion Foundations (DDPM / Score / DDIM / EDM / CFG)** | [md](diffusion_foundations_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/diffusion_foundations_tutorial.html) | DDPM ELBO + L_simple, score matching + Tweedie, Score SDE + PF-ODE, DDIM, EDM preconditioning + Heun, CFG, Consistency Models + LCM + Turbo |
+| **VAE / VQ-VAE / VQ-GAN / FSQ** | [md](vae_vqvae_vqgan_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/vae_vqvae_vqgan_tutorial.html) | VAE ELBO + reparam · β-VAE · IWAE · posterior collapse · VQ-VAE STE + EMA codebook · VQ-GAN + PatchGAN · FSQ even/odd levels · LFQ |
 
 ### 🎨 Generation Systems
 
@@ -45,7 +49,7 @@ Long-form interview-prep cheat sheets, written in Markdown and rendered to singl
 |---|---|---|---|
 | **VLM (CLIP / LLaVA / Qwen-VL / DeepSeek-VL)** | [md](vlm_multimodal_tutorial.md) | [html](https://wanshuiyin.github.io/Auto-claude-code-research-in-sleep/tutorials/vlm_multimodal_tutorial.html) | CLIP InfoNCE derivation, SigLIP, ViT, BLIP-2 Q-Former, Flamingo Perceiver, LLaVA, Qwen2-VL M-RoPE |
 
-> Additional categories (Post-Training & Reasoning · more Generation Systems) being written; full catalog at [ARIS-in-AI-Offer](https://github.com/wanshuiyin/ARIS-in-AI-Offer).
+> ✅ 15 tutorials initial set complete; full catalog + ongoing additions at [**ARIS-in-AI-Offer**](https://github.com/wanshuiyin/ARIS-in-AI-Offer).
 
 ## How they were produced
 
