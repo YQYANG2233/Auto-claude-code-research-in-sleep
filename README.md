@@ -34,11 +34,20 @@
 
 🛰 **社区好物 · [Claude Fleet](https://github.com/tianyilt/claude-fleet)**（by [@tianyilt](https://github.com/tianyilt)）—— 一个本地**只读**数据看板，同时盯住你开的一堆 **Claude Code / Codex** 窗口：triage（谁在干活 / 等你点权限 / 跑完了）· 一键 **Focus** 跳到对应终端 · ~50ms 全文搜所有 transcript · skill / memory 用量分析。像 ARIS 这种动辄并行一片 agent 的工作流特别合适。**好用的话点个 ⭐**
 
-<p align="center">
-  <a href="https://github.com/tianyilt/claude-fleet">
-    <img src="assets/claude-fleet-preview.png" alt="Claude Fleet — a dashboard for many concurrent Claude Code / Codex windows (triage, Focus, full-text search, skill/memory analytics)" width="100%">
-  </a>
-</p>
+<table align="center" width="100%">
+<tr>
+<td width="66%" align="center" valign="top">
+<a href="https://github.com/tianyilt/claude-fleet"><img src="assets/claude-fleet-preview.png" width="100%" alt="Claude Fleet — full local web dashboard for many concurrent Claude Code / Codex windows (triage, Focus, full-text search, skill/memory analytics)"></a>
+</td>
+<td width="34%" align="center" valign="top">
+<a href="aris-monitor/"><img src="aris-monitor/assets/screenshot.png" width="100%" alt="ARIS-Monitor — minimal always-on-top floating widget showing which Claude Code sessions need approval (calm all-clear vs red ATTENTION)"></a>
+</td>
+</tr>
+<tr>
+<td align="center"><b><a href="https://github.com/tianyilt/claude-fleet">Claude Fleet</a></b> · 全功能网页看板</td>
+<td align="center"><b><a href="aris-monitor/">ARIS-Monitor</a></b> · 极简悬浮小窗(自带)</td>
+</tr>
+</table>
 
 <details>
 <summary><b>Run it in 30 seconds</b></summary>
