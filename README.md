@@ -35,7 +35,7 @@
 
 🛰 **社区好物 · [Claude Fleet](https://github.com/tianyilt/claude-fleet)**（by [@tianyilt](https://github.com/tianyilt)）—— 一个本地**只读**数据看板，同时盯住你开的一堆 **Claude Code / Codex** 窗口：triage（谁在干活 / 等你点权限 / 跑完了）· 一键 **Focus** 跳到对应终端 · ~50ms 全文搜所有 transcript · skill / memory 用量分析。像 ARIS 这种动辄并行一片 agent 的工作流特别合适。**好用的话点个 ⭐**
 
-🪟 **更轻的自家选择 · [ARIS-Monitor](aris-monitor/)** —— 不想开浏览器?ARIS 自带一个 macOS 置顶**悬浮小窗**(纯 Python stdlib,**无浏览器 · 无 Chrome 扩展**):只盯"**哪个会话在等你授权**" 🔴,点一行直接跳到那个终端。**Claude Fleet = 全功能网页看板;ARIS-Monitor = 同一想法的极简常驻版**,各取所需。
+🪟 **更轻的自家选择 · [ARIS-Monitor](aris-monitor/)** —— 不想开浏览器？ARIS 自带一个 macOS 置顶**悬浮小窗**(纯 Python stdlib,**无浏览器 · 无 Chrome 扩展**):只盯"**哪个会话在等你授权**" 🔴,点一行直接跳到那个终端。**Claude Fleet = 全功能网页看板;ARIS-Monitor = 同一想法的极简常驻版**,各取所需。
 
 <table align="center" width="100%">
 <tr>
@@ -153,9 +153,7 @@ cd claude-fleet && bash run.sh
 
 > 🌙 **Let Claude Code do research while you sleep.** Wake up to find your paper scored, weaknesses identified, experiments run, and narrative rewritten — autonomously.
 >
-> 🪶 **Radically lightweight — zero dependencies, zero lock-in.** The entire system is plain Markdown files. No framework to learn, no database to maintain, no Docker to configure, no daemon to babysit. Every skill is a single `SKILL.md` readable by any LLM — swap Claude Code for [Codex CLI](skills/skills-codex/), [OpenClaw](docs/OPENCLAW_ADAPTATION.md), [Cursor](docs/CURSOR_ADAPTATION.md), [Trae](docs/TRAE_ARIS_RUNBOOK_EN.md), [Antigravity](docs/ANTIGRAVITY_ADAPTATION.md), [Copilot CLI](docs/COPILOT_CLI_ADAPTATION.md), Windsurf, or your own agent and the workflows still work. Fork it, rewrite it, adapt it to your stack.
->
-> *💡 ARIS is a methodology, not a platform. What matters is the research workflow — take it wherever you go. 🌱*
+> 🪶 **Radically lightweight — no infrastructure, zero lock-in.** The entire skill layer is plain Markdown files. No framework to learn, no database to maintain, no Docker to configure, no daemon to babysit. Every skill is a single `SKILL.md` readable by any LLM — swap Claude Code for [Codex CLI](skills/skills-codex/), [OpenClaw](docs/OPENCLAW_ADAPTATION.md), [Cursor](docs/CURSOR_ADAPTATION.md), [Trae](docs/TRAE_ARIS_RUNBOOK_EN.md), [Antigravity](docs/ANTIGRAVITY_ADAPTATION.md), [Copilot CLI](docs/COPILOT_CLI_ADAPTATION.md), Windsurf, or your own agent and the workflows still work. Fork it, rewrite it, adapt it to your stack.
 
 Custom [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills for autonomous ML research workflows. These skills orchestrate **cross-model collaboration** — Claude Code drives the research while an external LLM (via [Codex MCP](https://github.com/openai/codex)) acts as a critical reviewer. 🔀 **Also supports [alternative model combinations](#alternative-model-combinations) (Kimi, LongCat, DeepSeek, etc.) — no Claude or OpenAI API required.** For example, [MiniMax-M2.7 + GLM-5 or GLM-5 + MiniMax-M2.7](docs/MiniMax-GLM-Configuration.md). 🤖 **[Codex CLI native](skills/skills-codex/)** — full skill set also available for OpenAI Codex. 🖱️ **[Cursor](docs/CURSOR_ADAPTATION.md)** — works in Cursor too. 🖥️ **[Trae](docs/TRAE_ARIS_RUNBOOK_EN.md)** — ByteDance AI IDE. 🚀 **[Antigravity](docs/ANTIGRAVITY_ADAPTATION.md)** — Google's agent-first IDE. 🐙 **[Copilot CLI](docs/COPILOT_CLI_ADAPTATION.md)** — GitHub's terminal agent (native SKILL.md + MCP). 🆓 **[Free tier via ModelScope](docs/MODELSCOPE_GUIDE.md) — zero cost, zero lock-in.**
 
@@ -346,15 +344,14 @@ Two outputs: `PASTE_READY.txt` (exact char count, paste to venue) + `REBUTTAL_DR
 ## 3. 🚀 Quick Start
 
 ```bash
-# 1. Install skills
+# 1. Install skills — project-local symlinks (recommended)
 git clone https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep.git
-mkdir -p ~/.claude/skills/    # create if it doesn't exist (new Claude Code versions)
-cp -r Auto-claude-code-research-in-sleep/skills/* ~/.claude/skills/
+bash Auto-claude-code-research-in-sleep/tools/install_aris.sh ~/your-project   # symlinks ARIS skills into <project>/.claude/skills/
+# (prefer a global install instead? cp -r Auto-claude-code-research-in-sleep/skills/* ~/.claude/skills/)
 
-# 1b. Update skills (when upstream has new versions)
+# 1b. Update later (when upstream changes)
 cd Auto-claude-code-research-in-sleep && git pull
-bash tools/smart_update.sh          # dry-run: shows what's new/changed/safe
-bash tools/smart_update.sh --apply  # apply: adds new + updates safe ones
+bash tools/smart_update.sh --apply   # updates safe skills, flags your personal customizations
 
 # Optional Codex mirror managed project install
 bash tools/install_aris_codex.sh ~/your-codex-project
@@ -502,17 +499,6 @@ All pipeline behaviors are configurable via inline overrides — append `— key
 
 See [full setup guide](#setup) for details and [alternative model combinations](#alternative-model-combinations) if you don't have Claude/OpenAI API.
 
-> 🧠 **Smart-update workflow** — git pull + dry-run + apply; detects personal customizations and only updates safe skills.
->
-> ```bash
-> cd Auto-claude-code-research-in-sleep
-> git pull
-> bash tools/smart_update.sh          # dry-run: shows what's new/changed/safe
-> bash tools/smart_update.sh --apply  # apply: adds new + updates safe ones
-> ```
->
-> Compares local skills with upstream, detects personal customizations (server paths, API keys, etc.), and only updates skills that are safe to replace. Skills with your personal info are flagged for manual review.
-
 <a id="features"></a>
 
 ## 4. ✨ Features
@@ -558,7 +544,7 @@ ARIS chains **77 composable skills** across the whole research lifecycle — lit
 
 ## 5. 📈 Score Progression (Real Run)
 
-A real overnight 4-round run on an ML research project: **5.0/10 (borderline reject) → 7.5/10 (submission-ready)** — the loop autonomously ran **20+ GPU experiments**, rewrote the narrative framing, and killed claims that didn't hold up, all without human intervention.
+A real overnight 4-round run on an ML research project — the AI reviewer's score climbed **5.0/10 (borderline reject) → 7.5/10 (review-ready)** as the loop autonomously ran **20+ GPU experiments**, rewrote the narrative framing, and killed claims that didn't hold up, all without human intervention.
 
 <details>
 <summary>Round-by-round breakdown</summary>
@@ -577,7 +563,7 @@ A real overnight 4-round run on an ML research project: **5.0/10 (borderline rej
 
 ## 6. 🏆 Community Showcase — Papers Built with ARIS
 
-Real projects that used the full ARIS pipeline end-to-end. **The signals below are AI-review scores ([CSPaper](https://cspaper.org/) / [Stanford Agentic Reviewer](https://paperreview.ai/)), not venue acceptances** — and since ARIS optimizes *through* AI-review loops, high AI scores are an expected byproduct, not proof of acceptance (human reviewers still bring literature / venue / community judgment an AI reviewer misses). **Used ARIS for a paper? Open an issue / PR to be featured!**
+Real projects that used the full ARIS pipeline end-to-end. **The scores listed are AI-review signals ([CSPaper](https://cspaper.org/) / [Stanford Agentic Reviewer](https://paperreview.ai/)), not venue acceptances** — and since ARIS optimizes *through* AI-review loops, high AI scores are an expected byproduct, not proof of acceptance (human reviewers still bring literature / venue / community judgment an AI reviewer misses). **Used ARIS for a paper? Open an issue / PR to be featured!**
 
 <details>
 <summary>Papers + their AI-review signals (3)</summary>
@@ -662,14 +648,14 @@ Domain-specific skills and external projects contributed by the community. PRs w
 
 ## 8. 🔄 Workflows
 
-These skills compose into a full research lifecycle. The four workflows can be used independently or chained together:
+These skills compose into a full research lifecycle. Each workflow can be used independently or chained together:
 
 - **Exploring a new area (e.g., writing a survey)?** Start with Workflow 1 → `/idea-discovery`
 - **Have a plan, need to implement and run?** Workflow 1.5 → `/experiment-bridge`
 - **Already have results, need iterative improvement?** Workflow 2 → `/auto-review-loop`
 - **Ready to write the paper?** Workflow 3 → `/paper-writing` (or step by step: `/paper-plan` → `/paper-figure` → `/paper-write` → `/paper-compile` → `/auto-paper-improvement-loop`)
 - **Got reviews back? Need to rebuttal?** Workflow 4 → `/rebuttal` — parse reviews, draft safe rebuttal, follow-up rounds
-- **Full pipeline?** Workflow 1 → 1.5 → 2 → 3 → submit → 4 → `/research-pipeline` + `/rebuttal` — from idea to acceptance
+- **Full pipeline?** Workflow 1 → 1.5 → 2 → 3 → submit → 4 → `/research-pipeline` + `/rebuttal` — from idea through submission and rebuttal
 - **Want ARIS to remember and learn?** 📚 `/research-wiki init` — persistent memory across sessions. Papers, ideas, failed experiments compound over time
 - **Want ARIS to improve itself?** Workflow M → `/meta-optimize` — analyze usage logs, propose skill improvements, reviewer-gated
 
@@ -1292,7 +1278,7 @@ Add `— reviewer: oracle-pro` to any reviewer-aware skill (`/proof-checker`, `/
 
 ## 9. 🧰 Skills Catalog
 
-ARIS ships **77+ skills** across literature, ideation, experiments, audit,
+ARIS ships **77 skills** across literature, ideation, experiments, audit,
 writing, talks, patents, and meta-utilities. The full catalog (with role,
 category, and requirements per skill) lives in
 **[`docs/SKILLS_CATALOG.md`](docs/SKILLS_CATALOG.md)** to keep this README
@@ -1326,7 +1312,7 @@ scannable.
 
 ## 10. ⚙️ Setup
 
-> 📖 **New to ARIS?** [`SETUP_GUIDE.md`](SETUP_GUIDE.md) ([中文](SETUP_GUIDE_CN.md)) gives a prescriptive 6-step walkthrough for macOS local + remote Linux GPU server with Claude Code + Codex MCP — the recommended path. The section below is the comprehensive reference covering all platforms, install methods, and config knobs.
+> 📖 **New to ARIS?** [`SETUP_GUIDE.md`](SETUP_GUIDE.md) ([中文](SETUP_GUIDE_CN.md)) gives a prescriptive 6-step walkthrough for macOS local + remote Linux GPU server with Claude Code + Codex MCP — the recommended path. The section below is a quick reference; deeper GPU / customization / model-combo setup lives in the linked docs.
 
 <a id="prerequisites"></a>
 
@@ -1537,7 +1523,7 @@ To run the auto-review loop without clicking permission prompts, add to `.claude
 
 ### 🖥️ GPU for Auto-Experiments (Optional)
 
-When the reviewer says "run an ablation", Claude Code writes the script and runs it on your GPU — you just declare your server in `CLAUDE.md`. Three modes (**Remote SSH** · **Local GPU** · **Vast.ai on-demand**): config snippets + setup → **[docs/GPU_SETUP.md](docs/GPU_SETUP.md)** (Vast.ai deep-dive → **[VAST_GPU_GUIDE](docs/integrations/VAST_GPU_GUIDE.md)**). No GPU? Review/rewrite skills still work; experiment fixes are flagged for manual follow-up.
+When the reviewer says "run an ablation", Claude Code writes the script and runs it on your GPU — you just declare your server in `CLAUDE.md`. Three modes (**Remote SSH** · **Local GPU** · **Vast.ai on-demand**): config snippets + setup → **[docs/GPU_SETUP.md](docs/GPU_SETUP.md)** (Vast.ai deep-dive → **[Vast.ai guide](docs/integrations/VAST_GPU_GUIDE.md)**). No GPU? Review/rewrite skills still work; experiment fixes are flagged for manual follow-up.
 
 ### 🔌 Integrations (Optional)
 

@@ -42,13 +42,11 @@
 
 > 🌙 **让 Claude Code 在你睡觉时做科研。** 醒来发现论文已被打分、弱点已被定位、实验已跑完、叙事已重写——全自动。
 >
-> 🪶 **极致轻量——零依赖，零锁定。** 整个系统就是纯 Markdown 文件。没有框架要学、没有数据库要维护、没有 Docker 要配、没有守护进程要看管。每个 skill 就是一个 `SKILL.md`，任何 LLM 都能读懂——换成 [Codex CLI](skills/skills-codex/)、[OpenClaw](docs/OPENCLAW_ADAPTATION.md)、[Cursor](docs/CURSOR_ADAPTATION.md)、[Trae](docs/TRAE_ARIS_RUNBOOK_CN.md)、[Antigravity](docs/ANTIGRAVITY_ADAPTATION_CN.md)、[Copilot CLI](docs/COPILOT_CLI_ADAPTATION.md)、Windsurf 或者你自己的 agent，工作流照样跑。Fork 它、改写它、适配到你的技术栈。
->
-> *💡 ARIS 是方法论，不是平台。重要的是科研工作流——带着它去任何地方。🌱*
+> 🪶 **极致轻量——无基础设施，零锁定。** 整个 skill 层就是纯 Markdown 文件。没有框架要学、没有数据库要维护、没有 Docker 要配、没有守护进程要看管。每个 skill 就是一个 `SKILL.md`，任何 LLM 都能读懂——换成 [Codex CLI](skills/skills-codex/)、[OpenClaw](docs/OPENCLAW_ADAPTATION.md)、[Cursor](docs/CURSOR_ADAPTATION.md)、[Trae](docs/TRAE_ARIS_RUNBOOK_CN.md)、[Antigravity](docs/ANTIGRAVITY_ADAPTATION_CN.md)、[Copilot CLI](docs/COPILOT_CLI_ADAPTATION.md)、Windsurf 或者你自己的 agent，工作流照样跑。Fork 它、改写它、适配到你的技术栈。
 
 🛰 **社区好物 · [Claude Fleet](https://github.com/tianyilt/claude-fleet)**（by [@tianyilt](https://github.com/tianyilt)）—— 一个本地**只读**数据看板，同时盯住你开的一堆 **Claude Code / Codex** 窗口：triage（谁在干活 / 等你点权限 / 跑完了）· 一键 **Focus** 跳到对应终端 · ~50ms 全文搜所有 transcript · skill / memory 用量分析。像 ARIS 这种动辄并行一片 agent 的工作流特别合适。**好用的话点个 ⭐**
 
-🪟 **更轻的自家选择 · [ARIS-Monitor](aris-monitor/)** —— 不想开浏览器?ARIS 自带一个 macOS 置顶**悬浮小窗**(纯 Python stdlib,**无浏览器 · 无 Chrome 扩展**):只盯"**哪个会话在等你授权**" 🔴,点一行直接跳到那个终端。**Claude Fleet = 全功能网页看板;ARIS-Monitor = 同一想法的极简常驻版**,各取所需。
+🪟 **更轻的自家选择 · [ARIS-Monitor](aris-monitor/)** —— 不想开浏览器？ARIS 自带一个 macOS 置顶**悬浮小窗**(纯 Python stdlib,**无浏览器 · 无 Chrome 扩展**):只盯"**哪个会话在等你授权**" 🔴,点一行直接跳到那个终端。**Claude Fleet = 全功能网页看板;ARIS-Monitor = 同一想法的极简常驻版**,各取所需。
 
 <table align="center" width="100%">
 <tr>
@@ -321,9 +319,10 @@ ARIS 读论文 → 找弱点 → 克隆代码 → 针对*那些*弱点用*那套
 ## 3. 🚀 快速开始
 
 ```bash
-# 1. 安装 skills
+# 1. 安装 skills —— 项目级 symlink（推荐）
 git clone https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep.git
-cp -r Auto-claude-code-research-in-sleep/skills/* ~/.claude/skills/
+bash Auto-claude-code-research-in-sleep/tools/install_aris.sh ~/your-project   # 把 ARIS skill symlink 进 <project>/.claude/skills/
+# （想全局安装？cp -r Auto-claude-code-research-in-sleep/skills/* ~/.claude/skills/）
 
 # 可选：Codex mirror 项目级受管安装
 bash Auto-claude-code-research-in-sleep/tools/install_aris_codex.sh ~/your-codex-project
@@ -510,7 +509,7 @@ ARIS 用 **77 个可组合 skill** 覆盖科研全生命周期——文献查新
 
 ## 5. 📈 真实运行效果
 
-某 ML 研究项目上的 4 轮通宵自动循环：**5.0/10（borderline reject）→ 7.5/10（可投稿）** —— 自主跑了 **20+ 个 GPU 实验**、重写叙事框架、杀掉经不住检验的声明，全程无人干预。
+某 ML 研究项目上的 4 轮通宵自动循环 —— AI 审稿评分从 **5.0/10（borderline reject）爬到 7.5/10（审稿就绪）**，期间自主跑了 **20+ 个 GPU 实验**、重写叙事框架、杀掉经不住检验的声明，全程无人干预。
 
 <details>
 <summary>逐轮明细</summary>
@@ -529,7 +528,7 @@ ARIS 用 **77 个可组合 skill** 覆盖科研全生命周期——文献查新
 
 ## 6. 🏆 社区实操 — 用 ARIS 完成的论文
 
-ARIS 全流程完成并进入投稿/审稿阶段的真实项目。**下面的分数是 AI 审稿信号（[CSPaper](https://cspaper.org/) / [Stanford Agentic Reviewer](https://paperreview.ai/)），不等于正式录用** —— 而且 ARIS 本就靠 AI-review 循环迭代，AI 分偏高是正常副产物、不是录用证据（真实人类审稿仍会带来 AI 没建模到的文献 / venue / 社区判断）。**你也用 ARIS 完成了论文？提 Issue / PR 来上榜！**
+ARIS 全流程完成并进入投稿/审稿阶段的真实项目。**所列分数是 AI 审稿信号（[CSPaper](https://cspaper.org/) / [Stanford Agentic Reviewer](https://paperreview.ai/)），不等于正式录用** —— 而且 ARIS 本就靠 AI-review 循环迭代，AI 分偏高是正常副产物、不是录用证据（真实人类审稿仍会带来 AI 没建模到的文献 / venue / 社区判断）。**你也用 ARIS 完成了论文？提 Issue / PR 来上榜！**
 
 <details>
 <summary>论文 + AI 审稿信号（3 篇）</summary>
@@ -610,7 +609,7 @@ ARIS 全流程完成并进入投稿/审稿阶段的真实项目。**下面的分
 
 ## 8. 🔄 工作流
 
-所有 Skills 组成完整科研流水线。四个工作流可以单独使用，也可以串联：
+所有 Skills 组成完整科研流水线。每个工作流都可以单独使用，也可以串联：
 
 - **探索新方向（比如写 survey）？** 从工作流 1 开始 → `/idea-discovery`
 - **有计划了，需要实现和跑实验？** 工作流 1.5 → `/experiment-bridge`
@@ -1112,7 +1111,7 @@ claude   # hooks 立即生效
 
 ## 9. 🧰 Skills Catalog
 
-ARIS 现有 **77+ 个 skill**，覆盖文献调研、idea 生成、实验、审计、论文写作、
+ARIS 现有 **77 个 skill**，覆盖文献调研、idea 生成、实验、审计、论文写作、
 演讲、专利、meta 工具等。完整目录（每个 skill 含 role / category /
 依赖）在
 **[`docs/SKILLS_CATALOG.md`](docs/SKILLS_CATALOG.md)**，独立成文以保持
@@ -1143,7 +1142,7 @@ README 可扫读。
 
 ## 10. ⚙️ 安装
 
-> 📖 **第一次用 ARIS？** [`SETUP_GUIDE_CN.md`](SETUP_GUIDE_CN.md) ([English](SETUP_GUIDE.md)) 给你一个 6 步 prescriptive 走法：macOS 本地 + 远程 Linux GPU 服务器 + Claude Code + Codex MCP，推荐路径。下面这一节是 comprehensive reference —— 覆盖所有平台、安装方式、配置开关。
+> 📖 **第一次用 ARIS？** [`SETUP_GUIDE_CN.md`](SETUP_GUIDE_CN.md) ([English](SETUP_GUIDE.md)) 给你一个 6 步 prescriptive 走法：macOS 本地 + 远程 Linux GPU 服务器 + Claude Code + Codex MCP，推荐路径。下面这一节是快速参考；更深的 GPU / 自定义 / 模型组合配置见链接里的 docs。
 
 <a id="prerequisites"></a>
 
@@ -1320,7 +1319,7 @@ cp -r skills/experiment-bridge ~/.claude/skills/
 
 ### 🖥️ 自动跑实验的 GPU(可选)
 
-审稿人说"补个消融实验"时,Claude Code 会自动写脚本并跑到你的 GPU 上 —— 你只需在 `CLAUDE.md` 里声明服务器。三种模式(**远程 SSH** · **本地 GPU** · **Vast.ai 按需**):配置片段 + 教程见 **[docs/GPU_SETUP_CN.md](docs/GPU_SETUP_CN.md)**(Vast.ai 详解 → **[VAST_GPU_GUIDE](docs/integrations/VAST_GPU_GUIDE_CN.md)**)。没 GPU?Review / 改写照常,跑实验的修复会标记"需人工跟进"。
+审稿人说"补个消融实验"时,Claude Code 会自动写脚本并跑到你的 GPU 上 —— 你只需在 `CLAUDE.md` 里声明服务器。三种模式(**远程 SSH** · **本地 GPU** · **Vast.ai 按需**):配置片段 + 教程见 **[docs/GPU_SETUP_CN.md](docs/GPU_SETUP_CN.md)**(Vast.ai 详解 → **[Vast.ai 指南](docs/integrations/VAST_GPU_GUIDE_CN.md)**)。没 GPU?Review / 改写照常,跑实验的修复会标记"需人工跟进"。
 
 ### 🔌 集成(可选)
 
