@@ -30,6 +30,8 @@
 > 📖 *Preview from the [Diffusion Foundations cheat sheet](https://wanshuiyin.github.io/ARIS-in-AI-Offer/tutorials/diffusion_foundations_tutorial.html) — every tutorial in [ARIS-in-AI-Offer](https://github.com/wanshuiyin/ARIS-in-AI-Offer) follows the same three-pillar structure (foundations / interview Q&A / runnable code).*
 >
 > 🌐 *Same workflow, different deliverable — [**ARIS-Homepage v1 live demo**](https://wanshuiyin.github.io/) (CV → fact-checked single-file academic homepage via `/homepage-generator`).*
+>
+> 📝 *Two long-form blogs, cross-model collaborative writing via `/render-html` — [Continuous DLM — 2026 H1 survey](https://wanshuiyin.github.io/ARIS-in-AI-Offer/blogs/continuous_dlm_2026h1_survey.html) · [Cosmos 3 — understanding + generation in one Transformer (MoT)](https://wanshuiyin.github.io/ARIS-in-AI-Offer/blogs/cosmos3_mot_guide.html).*
 
 🛰 **社区好物 · [Claude Fleet](https://github.com/tianyilt/claude-fleet)**（by [@tianyilt](https://github.com/tianyilt)）—— 一个本地**只读**数据看板，同时盯住你开的一堆 **Claude Code / Codex** 窗口：triage（谁在干活 / 等你点权限 / 跑完了）· 一键 **Focus** 跳到对应终端 · ~50ms 全文搜所有 transcript · skill / memory 用量分析。像 ARIS 这种动辄并行一片 agent 的工作流特别合适。**好用的话点个 ⭐**
 
