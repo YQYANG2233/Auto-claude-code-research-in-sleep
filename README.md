@@ -50,7 +50,18 @@
 </table>
 
 <details>
-<summary><b>Run it in 30 seconds</b></summary>
+<summary><b>Run ARIS-Monitor in 5 seconds</b></summary>
+
+```bash
+# part of this repo — no extra clone, no pip install, no browser:
+cd aris-monitor && ./run.sh
+# a borderless panel floats top-right; click a row to jump to that terminal
+```
+
+</details>
+
+<details>
+<summary><b>Run Claude Fleet in 30 seconds</b></summary>
 
 ```bash
 git clone https://github.com/tianyilt/claude-fleet
